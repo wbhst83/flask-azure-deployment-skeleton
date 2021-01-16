@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    nathan_env = os.environ.get('NATHAN', 'NICK) 
+    nathan_env = os.environ.get('NATHAN', 'Nick') 
     return f'<h1>Hello {nathan_env} on Azure!</h1>'
 
 if __name__ == '__main__':
