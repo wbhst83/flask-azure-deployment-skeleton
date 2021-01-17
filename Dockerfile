@@ -2,6 +2,17 @@
 FROM python:3.8-slim-buster
 
 EXPOSE 8000
+ENV PORT 8000
+ENV SSH_PORT 2222
+
+# setup SSH
+RUN mkdir -p /home/LogFiles \
+     && echo "root:Docker!" | chpasswd \
+     && echo "cd /home" >> /etc/bash.bashrc 
+
+COPY sshd_config /etc/ssh/
+RUN mkdir -p /opt/startup
+COPY init_container.sh /opt/startup/init_container.sh
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
